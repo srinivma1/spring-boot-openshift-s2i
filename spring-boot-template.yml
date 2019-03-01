@@ -42,7 +42,7 @@ items:
       contextDir: route-2a
       git:
         ref: master
-        uri: 'https://github.com/kalyanraman/route-2a.git'
+        uri: 'https://github.com/srinivma1/route-2a.git'
       type: Git
     strategy:
       sourceStrategy:
