@@ -5,8 +5,8 @@ items:
   kind: ImageStream
   metadata:
     labels:
-      app: payg-domain-service
-    name: payg-domain-service
+      app: route-2a
+    name: route-2a
 - apiVersion: image.openshift.io/v1    
   kind: ImageStream
   apiVersion: "v1"
@@ -27,22 +27,22 @@ items:
   metadata:
     annotations:
     labels:
-      app: payg-domain-service
-    name: payg-domain-service
+      app: route-2a
+    name: route-2a
   spec:
     nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: 'payg-domain-service:latest'
+        name: 'route-2a:latest'
     postCommit: {}
     resources: {}
     runPolicy: Serial
     source:
-      contextDir: payg-domain-service
+      contextDir: route-2a
       git:
         ref: master
-        uri: 'https://github.com/kalyanraman/payg-domain-service.git'
+        uri: 'https://github.com/kalyanraman/route-2a.git'
       type: Git
     strategy:
       sourceStrategy:
@@ -67,8 +67,8 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     labels:
-      app: payg-domain-service
-    name: payg-domain-service
+      app: route-2a
+    name: route-2a
   spec:
     ports:
       - name: 8081-tcp
@@ -76,7 +76,7 @@ items:
         protocol: TCP
         targetPort: 8081
     selector:
-      deploymentconfig: payg-domain-service
+      deploymentconfig: route-2a
     sessionAffinity: None
     type: ClusterIP
 
@@ -85,28 +85,28 @@ items:
   metadata:
     annotations:
     labels:
-      app: payg-domain-service
-    name: payg-domain-service
+      app: route-2a
+    name: route-2a
   spec:
     port:
       targetPort: 8081-tcp
     to:
       kind: Service
-      name: payg-domain-service
+      name: route-2a
       weight: 100
     wildcardPolicy: None
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     labels:
-      app: payg-domain-service
-    name: payg-domain-service
+      app: route-2a
+    name: route-2a
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: payg-domain-service
-      deploymentconfig: payg-domain-service
+      app: route-2a
+      deploymentconfig: route-2a
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -121,14 +121,14 @@ items:
       metadata:
         creationTimestamp: null
         labels:
-          app: payg-domain-service
-          deploymentconfig: payg-domain-service
+          app: route-2a
+          deploymentconfig: route-2a
       spec:
         containers:
           - env:
             image:
             imagePullPolicy: Always
-            name: payg-domain-service
+            name: route-2a
             ports:
               - containerPort: 8081
                 protocol: TCP
@@ -142,7 +142,7 @@ items:
         volumes:
         - name: application-config
           configMap:
-            name:  payg-domain-service-config 
+            name:  route-2a-config 
             items:
             - key: application.properties 
               path: application.properties               
@@ -157,8 +157,8 @@ items:
       - imageChangeParams:
           automatic: true
           containerNames:
-            - payg-domain-service
+            - route-2a
           from:
             kind: ImageStreamTag
-            name: 'payg-domain-service:latest'
+            name: 'route-2a:latest'
         type: ImageChange
