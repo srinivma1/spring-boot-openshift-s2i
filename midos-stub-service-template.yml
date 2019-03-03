@@ -27,7 +27,6 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
-      contextDir: midos-stub-service
       git:
         ref: master
         uri: 'https://github.com/kalyanraman/midos-stub-service.git'
