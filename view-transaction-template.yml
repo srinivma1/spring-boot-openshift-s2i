@@ -10,21 +10,6 @@ objects:
     labels:
       app: payg-domain-service
     name: payg-domain-service
-- apiVersion: image.openshift.io/v1    
-  kind: ImageStream
-  apiVersion: "v1"
-  labels:
-    app: s2i-java
-  metadata:
-    name: s2i-java
-  spec:
-    tags:
-      - from:
-          kind: DockerImage
-          name: 'fabric8/s2i-java:2.3.1'
-        name: '2.3.1'
-        referencePolicy:
-          type: Source    
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
