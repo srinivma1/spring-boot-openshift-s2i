@@ -27,7 +27,6 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
-      contextDir: payg-domain-service
       git:
         ref: master
         uri: 'https://github.com/kalyanraman/payg-domain-service.git'
