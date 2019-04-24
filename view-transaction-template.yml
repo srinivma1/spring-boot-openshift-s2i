@@ -10,6 +10,21 @@ objects:
     labels:
       app: payg-domain-service
     name: payg-domain-service
+- apiVersion: image.openshift.io/v1    
+  kind: ImageStream
+  apiVersion: "v1"
+  labels:
+    app: s2i-java
+  metadata:
+    name: s2i-java
+  spec:
+    tags:
+      - from:
+          kind: DockerImage
+          name: 'fabric8/s2i-java:2.3.1'
+        name: '2.3.1'
+        referencePolicy:
+          type: Source    
 - apiVersion: build.openshift.io/v1
   kind: BuildConfig
   metadata:
@@ -27,9 +42,10 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
+      contextDir: payg-domain-service
       git:
         ref: master
-        uri: 'https://github.com/kalyanraman/payg-domain-service.git'
+        uri: 'http://infygit.ad.infosys.com/eon-uk/payg-domain-service.git'
       type: Git
     strategy:
       sourceStrategy:
@@ -59,9 +75,9 @@ objects:
   spec:
     ports:
       - name: 8081-tcp
-        port: 9090
+        port: 8081
         protocol: TCP
-        targetPort: 9090
+        targetPort: 8081
     selector:
       deploymentconfig: payg-domain-service
     sessionAffinity: None
